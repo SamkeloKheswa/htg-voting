@@ -6,10 +6,22 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body onload="checkAuth(); loadDashboard();">
-  <div class="dashboard">
+  <div class="dashboard container">
     <h1>📊 Hammarsdale Got Talent Voting</h1>
     <button onclick="logout()" style="float:right; margin-bottom:20px;">Logout</button>
-    <div id="contestants" class="cards"></div>
+    <table id="voteTable">
+      <thead>
+        <tr>
+          <th>Position</th>
+          <th>Contestant Name</th>
+          <th>Unique Code</th>
+          <th>Votes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Dynamic rows inserted here -->
+      </tbody>
+    </table>
   </div>
   <script src="script.js"></script>
 </body>
