@@ -6,13 +6,29 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Header with logos -->
+  <header>
+    <img src="logo1.jpg" alt="Logo 1">
+    <h1>Hammarsdale Got Talent Voting</h1>
+    <img src="logo2.jpg" alt="Logo 2">
+  </header>
+
+  <!-- Main content -->
   <div class="container">
-    <h1>🔐 Admin Login</h1>
-    <input type="text" id="username" placeholder="Username" required>
-    <input type="password" id="password" placeholder="Password" required>
-    <button onclick="login()">Login</button>
-    <p id="error" style="color:red; margin-top:10px;"></p>
+    <div class="login-card">
+      <h2>🔐 Admin Login</h2>
+      <input type="text" id="username" placeholder="Username" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <button onclick="login()">Login</button>
+      <p id="error"></p>
+    </div>
   </div>
+
+  <!-- Footer -->
+  <footer>
+    Developed by Certified Full Stack Developer
+  </footer>
+
   <script src="script.js"></script>
 </body>
 </html>
