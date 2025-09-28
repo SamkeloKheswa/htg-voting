@@ -67,9 +67,31 @@ async function loadDashboard() {
   }
 }
 
-// ======================== Auto-refresh every 5 seconds ========================
-setInterval(() => {
-  if (window.location.pathname.includes("dashboard.html")) {
-    loadDashboard();
-  }
-}, 5000);
+// ======================== Auto-refresh with Countdown ========================
+let refreshTime = 120; // seconds
+const timerDisplay = document.getElementById('refreshTimer');
+
+function startCountdown() {
+  let timeLeft = refreshTime;
+
+  setInterval(() => {
+    if (!timerDisplay) return;
+
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft % 60;
+    timerDisplay.textContent = `Next refresh in ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+    timeLeft--;
+
+    if (timeLeft < 0) {
+      loadDashboard(); // refresh votes
+      timeLeft = refreshTime; // reset countdown
+    }
+  }, 1000);
+}
+
+// Start countdown when dashboard loads
+if (window.location.pathname.includes("dashboard.html")) {
+  startCountdown();
+  loadDashboard(); // initial load
+}
