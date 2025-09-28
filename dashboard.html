@@ -2,13 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Voting Dashboard</title>
+  <title>Dashboard - HGT Voting</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body onload="checkAuth(); loadDashboard();">
-  <div class="dashboard container">
-    <h1>📊 Hammarsdale Got Talent Voting</h1>
-    <button onclick="logout()" style="float:right; margin-bottom:20px;">Logout</button>
+<body onload="checkAuth(); loadDashboard()">
+
+  <!-- Header with logos -->
+  <header>
+    <img src="logo1.jpg" alt="Logo 1">
+    <h1>Hammarsdale Got Talent Voting</h1>
+    <img src="logo2.jpg" alt="Logo 2">
+  </header>
+
+  <!-- Main content -->
+  <div class="container dashboard">
+    <h1>Live Voting Dashboard</h1>
+    <button onclick="logout()">Logout</button>
+
+    <!-- Voting table -->
     <table id="voteTable">
       <thead>
         <tr>
@@ -19,10 +30,16 @@
         </tr>
       </thead>
       <tbody>
-        <!-- Dynamic rows inserted here -->
+        <!-- Dynamic rows inserted via script.js -->
       </tbody>
     </table>
   </div>
+
+  <!-- Footer -->
+  <footer>
+    Developed by Certified Full Stack Developer
+  </footer>
+
   <script src="script.js"></script>
 </body>
 </html>
