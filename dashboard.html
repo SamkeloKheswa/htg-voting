@@ -5,9 +5,10 @@
   <title>Voting Dashboard</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body onload="checkAuth(); loadDashboard();">
   <div class="dashboard">
     <h1>📊 Hammarsdale Got Talent Voting</h1>
+    <button onclick="logout()" style="float:right; margin-bottom:20px;">Logout</button>
     <div id="contestants" class="cards"></div>
   </div>
   <script src="script.js"></script>
