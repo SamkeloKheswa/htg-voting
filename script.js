@@ -1,41 +1,27 @@
-// Hardcoded admin users
-const users = {
-  "Themba K": "Password@1234",
-  "Langa M": "Password@1234"
-};
+async function loadDashboard() {
+  const contestantsRes = await fetch('contestants.json');
+  const votesRes = await fetch('votes.json');
 
-// Login system
-if (document.getElementById("loginForm")) {
-  document.getElementById("loginForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-    const username = document.getElementById("username").value.trim();
-    const password = document.getElementById("password").value.trim();
+  const contestants = await contestantsRes.json();
+  const votes = await votesRes.json();
 
-    if (users[username] && users[username] === password) {
-      localStorage.setItem("loggedIn", "true");
-      window.location.href = "dashboard.html";
-    } else {
-      document.getElementById("error").innerText = "Invalid credentials!";
-    }
+  const container = document.getElementById('contestants');
+  container.innerHTML = '';
+
+  contestants.forEach(c => {
+    const count = votes[c.code] || 0;
+
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <h3>${c.name}</h3>
+      <p>Unique Code: <strong>${c.code}</strong></p>
+      <p class="vote-count">Votes: ${count}</p>
+    `;
+    container.appendChild(card);
   });
 }
 
-// Show results in dashboard
-if (document.getElementById("results")) {
-  fetch("votes.json")
-    .then(res => res.json())
-    .then(data => {
-      let html = "<ul>";
-      for (const [contestant, votes] of Object.entries(data)) {
-        html += `<li>${contestant}: ${votes} votes</li>`;
-      }
-      html += "</ul>";
-      document.getElementById("results").innerHTML = html;
-    });
-}
-
-// Logout
-function logout() {
-  localStorage.removeItem("loggedIn");
-  window.location.href = "login.html";
+if (document.getElementById('contestants')) {
+  loadDashboard();
 }
