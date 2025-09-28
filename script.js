@@ -1,4 +1,4 @@
-// Login system
+// ======================== Login System ========================
 function login() {
   const username = document.getElementById("username").value.trim();
   const password = document.getElementById("password").value.trim();
@@ -28,7 +28,7 @@ function logout() {
   window.location.href = "login.html";
 }
 
-// Dashboard vote loader
+// ======================== Dashboard Vote Loader ========================
 async function loadDashboard() {
   try {
     const contestantsRes = await fetch('contestants.json');
@@ -37,21 +37,39 @@ async function loadDashboard() {
     const contestants = await contestantsRes.json();
     const votes = await votesRes.json();
 
-    const container = document.getElementById('contestants');
-    container.innerHTML = '';
+    // Sort contestants by votes descending
+    contestants.sort((a, b) => (votes[b.code] || 0) - (votes[a.code] || 0));
 
-    contestants.forEach(c => {
+    const tbody = document.querySelector("#voteTable tbody");
+    tbody.innerHTML = '';
+
+    contestants.forEach((c, index) => {
       const count = votes[c.code] || 0;
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.innerHTML = `
-        <h3>${c.name}</h3>
-        <p>Unique Code: <strong>${c.code}</strong></p>
-        <p class="vote-count">Votes: ${count}</p>
+      let voteClass = count >= 10 ? "high" : count >= 5 ? "mid" : "low";
+
+      // Position badge
+      let posClass = index === 0 ? 'position-1' :
+                     index === 1 ? 'position-2' :
+                     index === 2 ? 'position-3' : 'position-others';
+
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td><span class="position ${posClass}">${index + 1}</span></td>
+        <td>${c.name}</td>
+        <td>${c.code}</td>
+        <td class="votes ${voteClass}">${count}</td>
       `;
-      container.appendChild(card);
+      tbody.appendChild(row);
     });
+
   } catch (err) {
     console.error("Error loading dashboard:", err);
   }
 }
+
+// ======================== Auto-refresh every 5 seconds ========================
+setInterval(() => {
+  if (window.location.pathname.includes("dashboard.html")) {
+    loadDashboard();
+  }
+}, 5000);
