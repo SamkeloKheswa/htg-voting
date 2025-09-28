@@ -1,5 +1,7 @@
 [
   { "name": "Themba Kheswa", "code": "TK259101" },
-  { "name": "Mxolisi Langa", "code": "ML259102" }
-  // Add 18 more participants
+  { "name": "Mxolisi Langa", "code": "ML259102" },
+  { "name": "Samukelisiwe Mdunge", "code": "SM259103" },
+  { "name": "Kwanele Hadebe", "code": "KH259104" },
+  { "name": "Sthabile Bhengu", "code": "SB259105" }
 ]
