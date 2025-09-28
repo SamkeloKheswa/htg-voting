@@ -1,0 +1,41 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #f0f2f5;
+}
+
+.login-container {
+  margin-top: 100px;
+}
+
+input {
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+table {
+  margin: 20px auto;
+  border-collapse: collapse;
+  width: 80%;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+tr:nth-child(1) td {
+  background: gold;
+}
+tr:nth-child(2) td {
+  background: silver;
+}
+tr:nth-child(3) td {
+  background: #cd7f32; /* bronze */
+}
