@@ -1,6 +1,0 @@
-[build]
-  publish = "frontend/build"
-  functions = "functions"
-
-[functions]
-  directory = "functions"
