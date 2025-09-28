@@ -5,17 +5,48 @@ body {
   padding: 0;
   min-height: 100vh;
   background: linear-gradient(135deg, #6a11cb, #2575fc); /* Vibrant gradient */
-  display: flex;
-  justify-content: center;
-  align-items: center;
   color: #fff;
+}
+
+/* ======================== Header ======================== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: #ffffffcc;
+  border-bottom: 2px solid #6a11cb;
+}
+
+header img {
+  height: 60px;
+}
+
+header h1 {
+  text-align: center;
+  font-size: 24px;
+  color: #2575fc;
+}
+
+/* ======================== Footer ======================== */
+footer {
+  text-align: center;
+  padding: 15px 0;
+  background: #ffffffcc;
+  color: #333;
+  font-weight: bold;
+  margin-top: 30px;
+  border-top: 2px solid #6a11cb;
 }
 
 /* ======================== Containers ======================== */
 .container {
   max-width: 1000px;
-  margin: 50px auto;
+  margin: 20px auto;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* ======================== Login Card ======================== */
@@ -89,18 +120,16 @@ body {
 
 /* ======================== Dashboard Styling ======================== */
 .dashboard {
-  max-width: 1000px;
-  margin: 50px auto;
-  padding: 20px;
+  width: 100%;
   color: #333;
-  flex-direction: column;
   display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Dashboard Header */
 .dashboard h1 {
   text-align: center;
-  font-size: 32px;
+  font-size: 28px;
   margin-bottom: 25px;
   color: #2575fc;
 }
@@ -128,13 +157,14 @@ body {
 /* Table Styling */
 table {
   width: 100%;
+  max-width: 100%;
   border-collapse: separate;
   border-spacing: 0;
   border-radius: 15px;
   overflow: hidden;
-  margin-top: 20px;
   background: #ffffffcc;
   box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  margin-bottom: 30px;
 }
 
 th {
@@ -147,7 +177,7 @@ th {
 }
 
 td {
-  padding: 15px;
+  padding: 12px;
   text-align: center;
   font-size: 15px;
   border-bottom: 1px solid #ddd;
@@ -176,3 +206,44 @@ tbody tr:hover {
 .position-2 { background: silver; color: #000; }
 .position-3 { background: #cd7f32; color: #fff; }
 .position-others { background: #6a11cb; color: #fff; }
+
+/* ======================== Responsive ======================== */
+@media screen and (max-width: 768px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  header img {
+    height: 50px;
+  }
+
+  table, th, td {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .login-card input, .login-card button {
+    width: 95%;
+  }
+
+  .dashboard button {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  header img {
+    height: 40px;
+  }
+
+  .login-card h2 {
+    font-size: 24px;
+  }
+
+  .dashboard h1 {
+    font-size: 24px;
+  }
+}
