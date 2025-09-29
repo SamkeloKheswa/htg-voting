@@ -258,33 +258,25 @@
   </footer>
 
   <script>
-    // Checkbox & login button
-    const checkbox = document.getElementById('agreeCheckbox');
-    const loginBtn = document.getElementById('loginBtn');
+document.addEventListener('DOMContentLoaded', () => {
+  const checkbox = document.getElementById('agreeCheckbox');
+  const loginBtn = document.getElementById('loginBtn');
 
-    checkbox.addEventListener('change', () => {
-      if (checkbox.checked) {
-        loginBtn.disabled = false;
-        loginBtn.classList.add('enabled');
-        loginBtn.onclick = () => {
-          window.location.href = 'login.html';
-        };
-      } else {
-        loginBtn.disabled = true;
-        loginBtn.classList.remove('enabled');
-        loginBtn.onclick = null;
-      }
-    });
-
-    // Collapsible rules
-    const toggleBtn = document.getElementById('toggleRules');
-    const rulesContent = document.getElementById('rulesContent');
-
-    toggleBtn.addEventListener('click', () => {
-      rulesContent.classList.toggle('show');
-      toggleBtn.innerText = rulesContent.classList.contains('show') ? 'Hide' : 'Show';
-    });
-  </script>
+  checkbox.addEventListener('change', () => {
+    if (checkbox.checked) {
+      loginBtn.disabled = false;
+      loginBtn.classList.add('enabled');
+      loginBtn.onclick = () => {
+        window.location.href = 'login.html';
+      };
+    } else {
+      loginBtn.disabled = true;
+      loginBtn.classList.remove('enabled');
+      loginBtn.onclick = null;
+    }
+  });
+});
+</script>
 
 </body>
 </html>
