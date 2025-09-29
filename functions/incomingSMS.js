@@ -11,34 +11,44 @@ export async function handler(event, context) {
     const votesFile = path.join(process.cwd(), "votes.json");
     let votes = {};
 
+    // Load existing votes if file exists
     if (fs.existsSync(votesFile)) {
       votes = JSON.parse(fs.readFileSync(votesFile, "utf-8"));
     }
 
+    // Process each incoming SMS
     messages.forEach(msg => {
-      const voterMsg = msg.message.trim().toUpperCase(); // Example: TK259102
+      const voterMsg = msg.message.trim().toUpperCase(); // Example: "TK259102"
 
-      // First 2 or 3 letters are contestant code, rest is reference
-      const contestantCode = voterMsg.match(/^[A-Z]+/)[0];
-      const reference = voterMsg.replace(contestantCode, "");
+      // Extract contestant code (letters at the start)
+      const match = voterMsg.match(/^[A-Z]+/);
+      if (!match) return; // Ignore invalid messages
 
+      const contestantCode = match[0];
+
+      // Increment vote count
       if (!votes[contestantCode]) {
         votes[contestantCode] = 0;
       }
       votes[contestantCode]++;
 
-      console.log(`✅ Vote received for ${contestantCode} (Ref: ${reference})`);
+      console.log(`✅ Vote received for ${contestantCode} from ${msg.msisdn}`);
     });
 
     // Save updated votes.json
     fs.writeFileSync(votesFile, JSON.stringify(votes, null, 2));
 
+    // Return success
     return {
       statusCode: 200,
       body: JSON.stringify({ status: "success", votes })
     };
+
   } catch (err) {
     console.error("❌ Error processing SMS:", err);
-    return { statusCode: 500, body: "Webhook error" };
+    return {
+      statusCode: 500,
+      body: "Webhook error"
+    };
   }
 }
