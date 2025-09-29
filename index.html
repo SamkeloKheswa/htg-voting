@@ -31,13 +31,40 @@
       z-index: 0;
     }
 
+    /* Navigation Bar */
+    nav {
+      width: 100%;
+      background-color: rgba(30, 60, 114, 0.9);
+      padding: 10px 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 2;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      font-size: 1em;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffd700;
+    }
+
     /* Ensure content is above overlay */
-    h1, .terms, .agreement, button, p {
+    h1, .terms, .agreement, button, p, section {
       position: relative;
       z-index: 1;
     }
 
-    /* Premium gradient heading */
+    /* Heading */
     h1 {
       background: linear-gradient(135deg, #1e3c72, #2a5298);
       color: #ffffff;
@@ -45,16 +72,16 @@
       border-bottom: 3px solid #1e3c72;
       border-radius: 8px;
       text-align: center;
-      margin-top: 50px;
+      margin-top: 100px; /* leave space for nav */
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
 
-    /* Terms & Conditions box with dusty gold glass effect */
-    .terms {
+    /* Sections */
+    section {
       max-width: 800px;
       margin: 30px auto;
-      background: rgba(223, 191, 128, 0.75); /* dusty gold with transparency */
-      backdrop-filter: blur(10px); /* glassmorphism blur */
+      background: rgba(223, 191, 128, 0.75); 
+      backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       padding: 20px;
       border-radius: 15px;
@@ -63,12 +90,12 @@
       color: #3b2f1a;
     }
 
-    .terms h2 {
+    section h2 {
       color: #3b2f1a;
       margin-bottom: 15px;
     }
 
-    .terms p {
+    section p {
       margin-bottom: 10px;
       line-height: 1.6;
     }
@@ -78,6 +105,7 @@
       margin: 20px 0;
       color: #fff;
       font-size: 1.1em;
+      text-align: center;
     }
 
     .agreement input[type="checkbox"] {
@@ -96,6 +124,9 @@
       font-size: 1.1em;
       margin-bottom: 50px;
       transition: background 0.3s ease;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     button.enabled {
@@ -116,13 +147,67 @@
     a:hover {
       text-decoration: underline;
     }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      color: #fff;
+      margin: 20px 0;
+      z-index: 1;
+    }
+
+    /* Mobile adjustments */
+    @media screen and (max-width: 600px) {
+      nav a {
+        margin: 5px 10px;
+        font-size: 0.9em;
+      }
+
+      h1 {
+        font-size: 1.5em;
+        padding: 15px;
+      }
+    }
   </style>
 </head>
 <body>
 
+  <!-- Navigation -->
+  <nav>
+    <a href="#about">About</a>
+    <a href="#contact">Contact Us</a>
+    <a href="#terms">Terms & Conditions</a>
+  </nav>
+
   <h1>WELCOME TO HAMMARSDALE GOT TALENT LIVE VOTING TRACKER</h1>
 
-  <div class="terms">
+  <!-- About Section -->
+  <section id="about">
+    <h2>About Us</h2>
+    <p>
+      Umkhumbi Wamalokishi Movement is a community organisation dedicated to promoting local talent in Hammarsdale. 
+      Our mission is to provide a platform for young artists, performers, and creatives to showcase their skills and 
+      gain recognition through community events such as the Hammarsdale Got Talent competition.
+    </p>
+    <p>
+      The HGT Voting portal allows the public to participate in live voting for their favourite contestants, ensuring 
+      a fair and transparent process. Votes are counted in real-time, and the results are displayed live on the dashboard.
+    </p>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>If you have any queries or complaints regarding the voting system, please use the contact details below:</p>
+    <ul>
+      <li><strong>Email:</strong> <a href="mailto:Founder.MECH@outlook.com">Founder.MECH@outlook.com</a></li>
+      <li><strong>Phone:</strong> 067 022 6846</li>
+    </ul>
+    <p>We will respond to all queries as soon as possible. Thank you for participating in Hammarsdale Got Talent!</p>
+  </section>
+
+  <!-- Terms Section -->
+  <section id="terms">
     <h2>Terms and Conditions – Confidentiality Notice</h2>
     <p>
       By accessing this portal, you agree to keep all information contained herein strictly confidential. 
@@ -138,7 +223,7 @@
       By continuing to use this portal, you acknowledge and accept these confidentiality terms and agree 
       to comply with all policies regarding data security and privacy.
     </p>
-  </div>
+  </section>
 
   <div class="agreement">
     <input type="checkbox" id="agreeCheckbox">
@@ -146,6 +231,10 @@
   </div>
 
   <button id="loginBtn" disabled>Login</button>
+
+  <footer>
+    Developed by Certified Full Stack Developer
+  </footer>
 
   <script>
     const checkbox = document.getElementById('agreeCheckbox');
