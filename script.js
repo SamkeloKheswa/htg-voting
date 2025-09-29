@@ -68,7 +68,7 @@ async function loadDashboard() {
 }
 
 // ======================== Auto-refresh with Countdown ========================
-let refreshTime = 120; // seconds
+let refreshTime = 10; // 10 seconds
 const timerDisplay = document.getElementById('refreshTimer');
 
 function startCountdown() {
