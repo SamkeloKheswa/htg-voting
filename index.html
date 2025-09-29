@@ -30,29 +30,49 @@
       z-index: 0;
     }
 
-    /* Ensure content above overlay */
-    h1, h2, .terms, .rules, .agreement, button, p {
+    /* Header */
+    header {
+      width: 100%;
+      max-width: 1000px;
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       position: relative;
       z-index: 1;
     }
 
-    /* Heading */
-    h1 {
+    header img {
+      height: 60px;
+    }
+
+    header h1 {
+      color: #fff;
+      text-align: center;
+      font-size: 1.5em;
+      margin: 0;
+      flex: 1;
+    }
+
+    /* Main heading */
+    h1.main-heading {
       background: linear-gradient(135deg, #1e3c72, #2a5298);
       color: #ffffff;
       padding: 20px 30px;
       border-bottom: 3px solid #1e3c72;
       border-radius: 8px;
       text-align: center;
-      margin-top: 50px;
+      margin: 20px 0;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      position: relative;
+      z-index: 1;
     }
 
-    /* Terms & Conditions box */
+    /* Terms & Rules boxes */
     .terms, .rules {
       max-width: 800px;
       margin: 20px auto;
-      background: rgba(223, 191, 128, 0.75); /* dusty gold */
+      background: rgba(223, 191, 128, 0.75);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       padding: 20px;
@@ -61,6 +81,8 @@
       box-shadow: 0 8px 20px rgba(0,0,0,0.25);
       color: #3b2f1a;
       transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
     }
 
     .terms h2, .rules h2 {
@@ -93,7 +115,7 @@
     }
 
     .rulesContent.show {
-      max-height: 1000px; /* Enough for content */
+      max-height: 1000px;
     }
 
     /* Agreement checkbox */
@@ -102,6 +124,8 @@
       color: #fff;
       font-size: 1.1em;
       text-align: center;
+      position: relative;
+      z-index: 1;
     }
 
     .agreement input[type="checkbox"] {
@@ -118,7 +142,7 @@
       border-radius: 8px;
       cursor: not-allowed;
       font-size: 1.1em;
-      margin-bottom: 50px;
+      margin-bottom: 20px;
       transition: background 0.3s ease;
     }
 
@@ -131,43 +155,65 @@
       background-color: #1e3c72;
     }
 
+    /* Contact info box */
+    .contact {
+      max-width: 800px;
+      margin: 20px auto 40px;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 15px 20px;
+      border-radius: 12px;
+      text-align: center;
+      color: #333;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Footer */
+    footer {
+      width: 100%;
+      text-align: center;
+      padding: 15px;
+      background: rgba(0,0,0,0.7);
+      color: #fff;
+      position: relative;
+      z-index: 1;
+    }
+
     /* Responsive */
     @media(max-width: 600px){
-      h1 {
-        font-size: 1.5em;
-        padding: 15px 20px;
-      }
-      .terms, .rules {
-        margin: 15px;
-        padding: 15px;
-      }
+      header img { height: 50px; }
+      header h1 { font-size: 1.2em; }
+      h1.main-heading { font-size: 1.2em; padding: 15px 20px; }
+      .terms, .rules, .contact { margin: 15px; padding: 15px; }
     }
 
-    a {
-      color: #2a5298;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
+    a { color: #2a5298; text-decoration: none; font-weight: bold; }
+    a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
 
-  <h1>WELCOME TO HAMMARSDALE GOT TALENT LIVE VOTING TRACKER</h1>
+  <!-- Header with logos -->
+  <header>
+    <img src="logo1.jpg" alt="Logo 1">
+    <h1>Hammarsdale Got Talent</h1>
+    <img src="logo2.jpg" alt="Logo 2">
+  </header>
+
+  <!-- Main heading -->
+  <h1 class="main-heading">LIVE VOTING TRACKER</h1>
 
   <!-- Terms & Conditions -->
   <div class="terms">
-    <h2 id="terms">Terms and Conditions – Confidentiality Notice</h2>
+    <h2>Terms and Conditions – Confidentiality Notice</h2>
     <p>By accessing this portal, you agree to keep all information contained herein strictly confidential. Voting data, participant information, and system analytics are the property of Hammarsdale Got Talent and must not be shared, reproduced, or disclosed to any unauthorized parties.</p>
     <p>Unauthorized access, use, or distribution of any content from this portal is strictly prohibited and may result in legal action. Users are responsible for ensuring their login credentials remain secure and for any activity performed under their account.</p>
     <p>By continuing to use this portal, you acknowledge and accept these confidentiality terms and agree to comply with all policies regarding data security and privacy.</p>
   </div>
 
   <!-- Competition Rules -->
-  <div class="rules" id="rulesSection">
+  <div class="rules">
     <h2>Competition Rules <button id="toggleRules">Show</button></h2>
     <div class="rulesContent" id="rulesContent">
       <p>All participants and voters must adhere to the following rules:</p>
@@ -197,6 +243,19 @@
 
   <!-- Login button -->
   <button id="loginBtn" disabled>Login</button>
+
+  <!-- Contact Details -->
+  <div class="contact">
+    <h2>Contact Us</h2>
+    <p>Email: <a href="mailto:info@htg-voting.net">info@htg-voting.net</a></p>
+    <p>Phone: +27 67 022 6846</p>
+    <p>Website: <a href="https://htg-voting.netlify.app" target="_blank">htg-voting.netlify.app</a></p>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    Developed by Certified Full Stack Developer
+  </footer>
 
   <script>
     // Checkbox & login button
