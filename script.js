@@ -47,7 +47,7 @@ async function loadDashboard() {
       const count = votes[c.code] || 0;
       let voteClass = count >= 10 ? "high" : count >= 5 ? "mid" : "low";
 
-      // Position badge
+      // Position badge classes
       let posClass = index === 0 ? 'position-1' :
                      index === 1 ? 'position-2' :
                      index === 2 ? 'position-3' : 'position-others';
@@ -62,36 +62,26 @@ async function loadDashboard() {
       tbody.appendChild(row);
     });
 
+    // Update live timestamp
+    const timestampEl = document.getElementById("lastUpdated");
+    if (timestampEl) {
+      const now = new Date();
+      timestampEl.innerText = `Last Updated: ${now.toLocaleString()}`;
+    }
+
   } catch (err) {
     console.error("Error loading dashboard:", err);
   }
 }
 
-// ======================== Auto-refresh with Countdown ========================
-let refreshTime = 10; // 10 seconds
-const timerDisplay = document.getElementById('refreshTimer');
+// ======================== Auto-refresh every 2 minutes ========================
+setInterval(() => {
+  if (window.location.pathname.includes("dashboard.html")) {
+    loadDashboard();
+  }
+}, 120000); // 120000 ms = 2 minutes
 
-function startCountdown() {
-  let timeLeft = refreshTime;
-
-  setInterval(() => {
-    if (!timerDisplay) return;
-
-    const minutes = Math.floor(timeLeft / 60);
-    const seconds = timeLeft % 60;
-    timerDisplay.textContent = `Next refresh in ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-
-    timeLeft--;
-
-    if (timeLeft < 0) {
-      loadDashboard(); // refresh votes
-      timeLeft = refreshTime; // reset countdown
-    }
-  }, 1000);
-}
-
-// Start countdown when dashboard loads
+// ======================== Initial Load ========================
 if (window.location.pathname.includes("dashboard.html")) {
-  startCountdown();
-  loadDashboard(); // initial load
+  loadDashboard();
 }
