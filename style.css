@@ -14,8 +14,9 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 15px 20px;
-  background: #ffffffcc;
-  border-bottom: 2px solid #6a11cb;
+  background: linear-gradient(135deg, #bfa054, #e6c97f); /* muted gold gradient */
+  border-bottom: 2px solid #bfa054;
+  color: #ffffff;
 }
 
 header img {
