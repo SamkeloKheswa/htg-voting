@@ -1,29 +1,49 @@
-// functions/registerWebhook.js
-import fetch from "node-fetch";
+// functions/incomingSMS.js
+import fs from "fs";
+import path from "path";
 
 export async function handler(event) {
-  const API_TOKEN = process.env.BULKSMS_API_TOKEN;
+  // Only allow POST requests
+  if (event.httpMethod !== "POST") {
+    return {
+      statusCode: 200,
+      body: "✅ Incoming SMS function is live. Use POST to send data."
+    };
+  }
 
-  const webhookData = {
-    name: "HGT Voting Incoming",
-    url: "https://htg-voting.netlify.app/.netlify/functions/incomingSMS",
-    triggers: ["message_received"],
-    invoke_with: "many_messages"
-  };
+  try {
+    const data = JSON.parse(event.body);
+    const messages = data.messages || [];
 
-  const response = await fetch("https://api.bulksms.com/v1/webhooks", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${API_TOKEN}`
-    },
-    body: JSON.stringify(webhookData)
-  });
+    const votesFile = path.join(process.cwd(), "votes.json");
+    let votes = {};
 
-  const data = await response.json();
+    if (fs.existsSync(votesFile)) {
+      votes = JSON.parse(fs.readFileSync(votesFile, "utf-8"));
+    }
 
-  return {
-    statusCode: response.status,
-    body: JSON.stringify(data)
-  };
+    messages.forEach(msg => {
+      const voterMsg = msg.message.trim().toUpperCase(); // e.g., "TK259102"
+      const match = voterMsg.match(/^[A-Z]+/);
+      if (!match) return;
+
+      const contestantCode = match[0];
+      votes[contestantCode] = (votes[contestantCode] || 0) + 1;
+      console.log(`✅ Vote received for ${contestantCode} from ${msg.msisdn}`);
+    });
+
+    fs.writeFileSync(votesFile, JSON.stringify(votes, null, 2));
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ status: "success", votes })
+    };
+
+  } catch (err) {
+    console.error("❌ Error processing SMS:", err);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ status: "error", message: err.message })
+    };
+  }
 }
