@@ -18,7 +18,7 @@
     }
 
     h1 {
-      background: linear-gradient(135deg, #1e3c72, #2a5298); /* Premium gradient */
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
       color: #ffffff;
       padding: 20px 30px;
       border-bottom: 3px solid #1e3c72;
@@ -28,24 +28,9 @@
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
 
-    p {
-      margin-top: 20px;
-      font-size: 1.1em;
-    }
-
-    a {
-      color: #1e3c72;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
     .terms {
       max-width: 800px;
-      margin: 40px auto;
+      margin: 30px auto;
       background-color: #ffffffcc;
       padding: 20px;
       border-radius: 8px;
@@ -62,11 +47,29 @@
       margin-bottom: 10px;
       line-height: 1.6;
     }
+
+    .agreement {
+      margin: 20px 0;
+    }
+
+    button {
+      background-color: #1e3c72;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: not-allowed; /* disabled look */
+      font-size: 1em;
+    }
+
+    button.enabled {
+      cursor: pointer;
+      background-color: #2a5298;
+    }
   </style>
 </head>
 <body>
   <h1>WELCOME TO HAMMARSDALE GOT TALENT LIVE VOTING TRACKER</h1>
-  <p>Please <a href="login.html">Login</a> to continue.</p>
 
   <div class="terms">
     <h2>Terms and Conditions – Confidentiality Notice</h2>
@@ -85,5 +88,31 @@
       to comply with all policies regarding data security and privacy.
     </p>
   </div>
+
+  <div class="agreement">
+    <input type="checkbox" id="agreeCheckbox">
+    <label for="agreeCheckbox">I have read and agree to the Terms & Conditions</label>
+  </div>
+
+  <button id="loginBtn" disabled>Login</button>
+
+  <script>
+    const checkbox = document.getElementById('agreeCheckbox');
+    const loginBtn = document.getElementById('loginBtn');
+
+    checkbox.addEventListener('change', () => {
+      if (checkbox.checked) {
+        loginBtn.disabled = false;
+        loginBtn.classList.add('enabled');
+        loginBtn.onclick = () => {
+          window.location.href = 'login.html';
+        };
+      } else {
+        loginBtn.disabled = true;
+        loginBtn.classList.remove('enabled');
+        loginBtn.onclick = null;
+      }
+    });
+  </script>
 </body>
 </html>
