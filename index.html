@@ -19,7 +19,6 @@
       position: relative;
     }
 
-    /* Overlay to dim background */
     body::before {
       content: "";
       position: fixed;
@@ -27,39 +26,12 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.5); /* dimming overlay */
+      background-color: rgba(0, 0, 0, 0.5);
       z-index: 0;
     }
 
-    /* Navigation Bar */
-    nav {
-      width: 100%;
-      background-color: rgba(30, 60, 114, 0.9);
-      padding: 10px 0;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 2;
-    }
-
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: bold;
-      font-size: 1em;
-      transition: 0.3s;
-    }
-
-    nav a:hover {
-      color: #ffd700;
-    }
-
-    /* Ensure content is above overlay */
-    h1, .terms, .agreement, button, p, section {
+    /* Ensure content above overlay */
+    h1, h2, .terms, .rules, .agreement, button, p {
       position: relative;
       z-index: 1;
     }
@@ -72,15 +44,15 @@
       border-bottom: 3px solid #1e3c72;
       border-radius: 8px;
       text-align: center;
-      margin-top: 100px; /* leave space for nav */
+      margin-top: 50px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
 
-    /* Sections */
-    section {
+    /* Terms & Conditions box */
+    .terms, .rules {
       max-width: 800px;
-      margin: 30px auto;
-      background: rgba(223, 191, 128, 0.75); 
+      margin: 20px auto;
+      background: rgba(223, 191, 128, 0.75); /* dusty gold */
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       padding: 20px;
@@ -88,16 +60,40 @@
       border-left: 4px solid #8c6d3f;
       box-shadow: 0 8px 20px rgba(0,0,0,0.25);
       color: #3b2f1a;
+      transition: all 0.3s ease;
     }
 
-    section h2 {
+    .terms h2, .rules h2 {
       color: #3b2f1a;
       margin-bottom: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    section p {
-      margin-bottom: 10px;
-      line-height: 1.6;
+    .rules button {
+      background-color: #2a5298;
+      color: #fff;
+      border: none;
+      padding: 5px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9em;
+      transition: 0.3s ease;
+    }
+
+    .rules button:hover {
+      background-color: #1e3c72;
+    }
+
+    .rulesContent {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+
+    .rulesContent.show {
+      max-height: 1000px; /* Enough for content */
     }
 
     /* Agreement checkbox */
@@ -114,7 +110,7 @@
     }
 
     /* Login button */
-    button {
+    #loginBtn {
       background-color: #1e3c72;
       color: white;
       padding: 12px 25px;
@@ -124,18 +120,27 @@
       font-size: 1.1em;
       margin-bottom: 50px;
       transition: background 0.3s ease;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
     }
 
-    button.enabled {
+    #loginBtn.enabled {
       cursor: pointer;
       background-color: #2a5298;
     }
 
-    button.enabled:hover {
+    #loginBtn.enabled:hover {
       background-color: #1e3c72;
+    }
+
+    /* Responsive */
+    @media(max-width: 600px){
+      h1 {
+        font-size: 1.5em;
+        padding: 15px 20px;
+      }
+      .terms, .rules {
+        margin: 15px;
+        padding: 15px;
+      }
     }
 
     a {
@@ -147,96 +152,54 @@
     a:hover {
       text-decoration: underline;
     }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      color: #fff;
-      margin: 20px 0;
-      z-index: 1;
-    }
-
-    /* Mobile adjustments */
-    @media screen and (max-width: 600px) {
-      nav a {
-        margin: 5px 10px;
-        font-size: 0.9em;
-      }
-
-      h1 {
-        font-size: 1.5em;
-        padding: 15px;
-      }
-    }
   </style>
 </head>
 <body>
 
-  <!-- Navigation -->
-  <nav>
-    <a href="#about">About</a>
-    <a href="#contact">Contact Us</a>
-    <a href="#terms">Terms & Conditions</a>
-  </nav>
-
   <h1>WELCOME TO HAMMARSDALE GOT TALENT LIVE VOTING TRACKER</h1>
 
-  <!-- About Section -->
-  <section id="about">
-    <h2>About Us</h2>
-    <p>
-      Umkhumbi Wamalokishi Movement is a community organisation dedicated to promoting local talent in Hammarsdale. 
-      Our mission is to provide a platform for young artists, performers, and creatives to showcase their skills and 
-      gain recognition through community events such as the Hammarsdale Got Talent competition.
-    </p>
-    <p>
-      The HGT Voting portal allows the public to participate in live voting for their favourite contestants, ensuring 
-      a fair and transparent process. Votes are counted in real-time, and the results are displayed live on the dashboard.
-    </p>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <p>If you have any queries or complaints regarding the voting system, please use the contact details below:</p>
-    <ul>
-      <li><strong>Email:</strong> <a href="mailto:Founder.MECH@outlook.com">Founder.MECH@outlook.com</a></li>
-      <li><strong>Phone:</strong> 067 022 6846</li>
-    </ul>
-    <p>We will respond to all queries as soon as possible. Thank you for participating in Hammarsdale Got Talent!</p>
-  </section>
-
-  <!-- Terms Section -->
-  <section id="terms">
-    <h2>Terms and Conditions – Confidentiality Notice</h2>
-    <p>
-      By accessing this portal, you agree to keep all information contained herein strictly confidential. 
-      Voting data, participant information, and system analytics are the property of Hammarsdale Got Talent 
-      and must not be shared, reproduced, or disclosed to any unauthorized parties.
-    </p>
-    <p>
-      Unauthorized access, use, or distribution of any content from this portal is strictly prohibited 
-      and may result in legal action. Users are responsible for ensuring their login credentials remain secure 
-      and for any activity performed under their account.
-    </p>
-    <p>
-      By continuing to use this portal, you acknowledge and accept these confidentiality terms and agree 
-      to comply with all policies regarding data security and privacy.
-    </p>
-  </section>
-
-  <div class="agreement">
-    <input type="checkbox" id="agreeCheckbox">
-    <label for="agreeCheckbox">I have read and agree to the Terms & Conditions</label>
+  <!-- Terms & Conditions -->
+  <div class="terms">
+    <h2 id="terms">Terms and Conditions – Confidentiality Notice</h2>
+    <p>By accessing this portal, you agree to keep all information contained herein strictly confidential. Voting data, participant information, and system analytics are the property of Hammarsdale Got Talent and must not be shared, reproduced, or disclosed to any unauthorized parties.</p>
+    <p>Unauthorized access, use, or distribution of any content from this portal is strictly prohibited and may result in legal action. Users are responsible for ensuring their login credentials remain secure and for any activity performed under their account.</p>
+    <p>By continuing to use this portal, you acknowledge and accept these confidentiality terms and agree to comply with all policies regarding data security and privacy.</p>
   </div>
 
+  <!-- Competition Rules -->
+  <div class="rules" id="rulesSection">
+    <h2>Competition Rules <button id="toggleRules">Show</button></h2>
+    <div class="rulesContent" id="rulesContent">
+      <p>All participants and voters must adhere to the following rules:</p>
+      <ul>
+        <li>Participants must register prior to the audition or performance day.</li>
+        <li>All performances must be original or properly credited.</li>
+        <li>Judges will evaluate participants based on the following criteria:
+          <ul>
+            <li>Skill: /20</li>
+            <li>Performance: /20</li>
+            <li>Dress Code: /20</li>
+          </ul>
+        </li>
+        <li>Voters may only vote once per contestant per phone number.</li>
+        <li>Any attempt to manipulate votes will result in disqualification.</li>
+        <li>The organisers reserve the right to make final decisions regarding results and disputes.</li>
+      </ul>
+      <p>By participating in the competition or voting, you agree to comply with these rules.</p>
+    </div>
+  </div>
+
+  <!-- Agreement -->
+  <div class="agreement">
+    <input type="checkbox" id="agreeCheckbox">
+    <label for="agreeCheckbox">I have read and agree to the Terms & Conditions and Competition Rules</label>
+  </div>
+
+  <!-- Login button -->
   <button id="loginBtn" disabled>Login</button>
 
-  <footer>
-    Developed by Certified Full Stack Developer
-  </footer>
-
   <script>
+    // Checkbox & login button
     const checkbox = document.getElementById('agreeCheckbox');
     const loginBtn = document.getElementById('loginBtn');
 
@@ -252,6 +215,15 @@
         loginBtn.classList.remove('enabled');
         loginBtn.onclick = null;
       }
+    });
+
+    // Collapsible rules
+    const toggleBtn = document.getElementById('toggleRules');
+    const rulesContent = document.getElementById('rulesContent');
+
+    toggleBtn.addEventListener('click', () => {
+      rulesContent.classList.toggle('show');
+      toggleBtn.innerText = rulesContent.classList.contains('show') ? 'Hide' : 'Show';
     });
   </script>
 
