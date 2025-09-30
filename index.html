@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HTG LIVE SYSTEM</title>
   <style>
-    /* Body with dimmed background image */
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -25,11 +24,9 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: rgba(0,0,0,0.5);
       z-index: 0;
     }
-
-    /* Header */
     header {
       width: 100%;
       max-width: 1000px;
@@ -42,8 +39,6 @@
     }
     header img { height: 60px; }
     header h1 { color: #fff; text-align: center; font-size: 1.5em; margin: 0; flex: 1; }
-
-    /* Main heading */
     h1.main-heading {
       background: linear-gradient(135deg, #1e3c72, #2a5298);
       color: #ffffff;
@@ -56,12 +51,10 @@
       position: relative;
       z-index: 1;
     }
-
-    /* Terms & Rules boxes */
-    .terms, .rules {
+    .terms, .rules, .about, .campaign-dates, .contact {
       max-width: 800px;
       margin: 20px auto;
-      background: rgba(223, 191, 128, 0.75);
+      background: rgba(223,191,128,0.75);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       padding: 20px;
@@ -71,13 +64,6 @@
       color: #3b2f1a;
       position: relative;
       z-index: 1;
-    }
-    .terms h2, .rules h2 {
-      color: #3b2f1a;
-      margin-bottom: 15px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
     }
     .rules button {
       background-color: #2a5298;
@@ -90,102 +76,54 @@
       transition: 0.3s ease;
     }
     .rules button:hover { background-color: #1e3c72; }
-    .rulesContent {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s ease;
-    }
+    .rulesContent { max-height: 0; overflow: hidden; transition: max-height 0.5s ease; }
     .rulesContent.show { max-height: 1000px; }
-
-    /* Agreement checkbox */
-    .agreement {
-      margin: 20px 0;
-      color: #fff;
-      font-size: 1.1em;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-    }
-    .agreement input[type="checkbox"] {
-      transform: scale(1.2);
-      margin-right: 10px;
-    }
-
-    /* Login button */
-    #loginBtn {
-      background-color: #1e3c72;
-      color: white;
-      padding: 12px 25px;
-      border: none;
-      border-radius: 8px;
-      cursor: not-allowed;
-      font-size: 1.1em;
-      margin-bottom: 20px;
-      transition: background 0.3s ease;
-      position: relative;
-      z-index: 10;
-    }
-    #loginBtn.enabled {
-      cursor: pointer;
-      background-color: #2a5298;
-    }
+    .agreement { margin: 20px 0; color: #fff; font-size: 1.1em; text-align: center; position: relative; z-index: 1; }
+    .agreement input[type="checkbox"] { transform: scale(1.2); margin-right: 10px; }
+    #loginBtn { background-color: #1e3c72; color: white; padding: 12px 25px; border: none; border-radius: 8px; cursor: not-allowed; font-size: 1.1em; margin-bottom: 20px; transition: background 0.3s ease; }
+    #loginBtn.enabled { cursor: pointer; background-color: #2a5298; }
     #loginBtn.enabled:hover { background-color: #1e3c72; }
-
-    /* Contact info box */
-    .contact {
-      max-width: 800px;
-      margin: 20px auto 40px;
-      background: rgba(255, 255, 255, 0.85);
-      padding: 15px 20px;
-      border-radius: 12px;
-      text-align: center;
-      color: #333;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-      position: relative;
-      z-index: 1;
-    }
-
-    /* Footer */
-    footer {
-      width: 100%;
-      text-align: center;
-      padding: 15px;
-      background: rgba(0,0,0,0.7);
-      color: #fff;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* Responsive */
+    .contact { background: rgba(255,255,255,0.85); text-align: center; color: #333; box-shadow: 0 6px 15px rgba(0,0,0,0.2); }
+    footer { width: 100%; text-align: center; padding: 15px; background: rgba(0,0,0,0.7); color: #fff; position: relative; z-index: 1; }
     @media(max-width: 600px){
       header img { height: 50px; }
       header h1 { font-size: 1.2em; }
       h1.main-heading { font-size: 1.2em; padding: 15px 20px; }
-      .terms, .rules, .contact { margin: 15px; padding: 15px; }
+      .terms, .rules, .about, .campaign-dates, .contact { margin: 15px; padding: 15px; }
     }
-
     a { color: #2a5298; text-decoration: none; font-weight: bold; }
     a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
 
-  <!-- Header with logos -->
   <header>
     <img src="logo1.jpg" alt="Logo 1">
     <h1>Hammarsdale Got Talent</h1>
     <img src="logo2.jpg" alt="Logo 2">
   </header>
 
-  <!-- Main heading -->
   <h1 class="main-heading">LIVE VOTING TRACKER</h1>
+
+  <!-- About Section -->
+  <div class="about">
+    <h2>About Umkhumbi Wamalokishi Movement</h2>
+    <p>The Umkhumbi Wamalokishi Movement (NPC) proudly organizes the Hammarsdale Got Talent (HTG) Voting Campaign. Our mission is to promote local talent and ensure transparency and fairness throughout the voting process.</p>
+  </div>
+
+  <!-- Voting Campaign Dates -->
+  <div class="campaign-dates">
+    <h2>Voting Campaign</h2>
+    <p>Start Date: <strong>01 December 2025</strong></p>
+    <p>End Date: <strong>30 November 2025</strong></p>
+    <p>Fee: <strong>R2.00 per vote</strong></p>
+  </div>
 
   <!-- Terms & Conditions -->
   <div class="terms">
     <h2>Terms and Conditions – Confidentiality Notice</h2>
-    <p>By accessing this portal, you agree to keep all information contained herein strictly confidential. Voting data, participant information, and system analytics are the property of Hammarsdale Got Talent and must not be shared, reproduced, or disclosed to any unauthorized parties.</p>
-    <p>Unauthorized access, use, or distribution of any content from this portal is strictly prohibited and may result in legal action. Users are responsible for ensuring their login credentials remain secure and for any activity performed under their account.</p>
-    <p>By continuing to use this portal, you acknowledge and accept these confidentiality terms and agree to comply with all policies regarding data security and privacy.</p>
+    <p>By accessing this portal, you agree to keep all information contained herein strictly confidential. Voting data, participant information, and system analytics are the property of HTG and must not be shared or reproduced.</p>
+    <p>For full Terms & Conditions, visit: <a href="terms.html" target="_blank">Full Terms & Conditions</a></p>
   </div>
 
   <!-- Competition Rules -->
@@ -196,25 +134,19 @@
       <ul>
         <li>Participants must register prior to the audition or performance day.</li>
         <li>All performances must be original or properly credited.</li>
-        <li>Judges will evaluate participants based on the following criteria:
-          <ul>
-            <li>Skill: /20</li>
-            <li>Performance: /20</li>
-            <li>Dress Code: /20</li>
-          </ul>
-        </li>
+        <li>Judges will evaluate participants based on Skill, Performance, Dress Code.</li>
         <li>Voters may only vote once per contestant per phone number.</li>
+        <li>R2.00 per vote fee applies.</li>
         <li>Any attempt to manipulate votes will result in disqualification.</li>
         <li>The organisers reserve the right to make final decisions regarding results and disputes.</li>
       </ul>
-      <p>By participating in the competition or voting, you agree to comply with these rules.</p>
     </div>
   </div>
 
   <!-- Agreement -->
   <div class="agreement">
     <input type="checkbox" id="agreeCheckbox">
-    <label for="agreeCheckbox">I have read and agree to the Terms & Conditions and Competition Rules</label>
+    <label for="agreeCheckbox">I have read and agree to the Terms & Conditions, Competition Rules, and Voting Fee</label>
   </div>
 
   <!-- Login button -->
@@ -222,43 +154,35 @@
 
   <!-- Contact Details -->
   <div class="contact">
-    <h2>Contact Us</h2>
-    <p>Email: <a href="mailto:thembakheswa2006@outlook.com">UWM Communication Team</a></p>
+    <h2>Customer Support</h2>
+    <p>Email: <a href="mailto:thembakheswa2006@outlook.com">thembakheswa2006@outlook.com</a></p>
     <p>Phone: +27 67 022 6846</p>
     <p>Website: <a href="https://htg-voting.netlify.app" target="_blank">htg-voting.netlify.app</a></p>
   </div>
 
-  <!-- Footer -->
-  <footer>
-    Developed by Certified Full Stack Developer
-  </footer>
+  <footer>Developed by Certified Full Stack Developer</footer>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // Checkbox & login button
       const checkbox = document.getElementById('agreeCheckbox');
       const loginBtn = document.getElementById('loginBtn');
-      const toggleBtn = document.getElementById('toggleRules');
-      const rulesContent = document.getElementById('rulesContent');
 
-      // Checkbox to enable login
       checkbox.addEventListener('change', () => {
         if (checkbox.checked) {
           loginBtn.disabled = false;
           loginBtn.classList.add('enabled');
+          loginBtn.onclick = () => { window.location.href = 'login.html'; };
         } else {
           loginBtn.disabled = true;
           loginBtn.classList.remove('enabled');
+          loginBtn.onclick = null;
         }
       });
 
-      // Login click
-      loginBtn.addEventListener('click', () => {
-        if (!loginBtn.disabled) {
-          window.location.href = 'login.html';
-        }
-      });
-
-      // Toggle rules visibility
+      // Toggle Rules
+      const toggleBtn = document.getElementById('toggleRules');
+      const rulesContent = document.getElementById('rulesContent');
       toggleBtn.addEventListener('click', () => {
         rulesContent.classList.toggle('show');
         toggleBtn.innerText = rulesContent.classList.contains('show') ? 'Hide' : 'Show';
