@@ -1,124 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hammarsdale Got Talent</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTG LIVE SYSTEM</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background: #f4f4f4;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
+      background: url('logo2.jpg') no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
     }
-    .container {
-      background: #fff;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      width: 90%;
-      max-width: 500px;
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 0;
+    }
+
+    header {
+      width: 100%;
+      max-width: 1000px;
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    header img { height: 60px; }
+    header h1 { color: #fff; text-align: center; font-size: 1.5em; margin: 0; flex: 1; }
+
+    h1.main-heading {
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #ffffff;
+      padding: 20px 30px;
+      border-bottom: 3px solid #1e3c72;
+      border-radius: 8px;
       text-align: center;
+      margin: 20px 0;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      position: relative;
+      z-index: 1;
     }
-    h2 {
+
+    .box {
+      max-width: 800px;
+      margin: 20px auto;
+      background: rgba(223, 191, 128, 0.75);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 20px;
+      border-radius: 15px;
+      border-left: 4px solid #8c6d3f;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      color: #3b2f1a;
+      position: relative;
+      z-index: 1;
+    }
+
+    .box h2 {
+      color: #3b2f1a;
       margin-bottom: 15px;
-      color: #333;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    .rules {
-      text-align: left;
-      margin: 10px 0;
+
+    .rules button {
+      background-color: #2a5298;
+      color: #fff;
+      border: none;
+      padding: 5px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9em;
+      transition: 0.3s ease;
     }
-    .rules-content {
+
+    .rules button:hover { background-color: #1e3c72; }
+
+    .rulesContent {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.4s ease, padding 0.3s ease;
-      background: #fafafa;
-      padding: 0 10px;
-      border-radius: 8px;
-      margin-top: 8px;
+      transition: max-height 0.5s ease;
     }
-    .rules-content.show {
-      max-height: 300px;
-      padding: 10px;
-      border: 1px solid #ddd;
-    }
-    .btn {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 8px;
-      background: #999;
+
+    .rulesContent.show { max-height: 1000px; }
+
+    .agreement {
+      margin: 20px 0;
       color: #fff;
-      font-size: 16px;
-      cursor: not-allowed;
-      transition: background 0.3s, box-shadow 0.3s;
+      font-size: 1.1em;
+      text-align: center;
+      position: relative;
+      z-index: 1;
     }
-    .btn.enabled {
-      background: #28a745;
-      cursor: pointer;
-      box-shadow: 0 0 12px rgba(40,167,69,0.7);
-    }
-    .toggle-btn {
-      background: none;
+
+    .agreement input[type="checkbox"] { transform: scale(1.2); margin-right: 10px; }
+
+    #loginBtn {
+      background-color: #1e3c72;
+      color: white;
+      padding: 12px 25px;
       border: none;
-      color: #007BFF;
-      cursor: pointer;
-      font-size: 14px;
-      margin-top: 5px;
+      border-radius: 8px;
+      cursor: not-allowed;
+      font-size: 1.1em;
+      margin-bottom: 20px;
+      transition: background 0.3s ease;
     }
+
+    #loginBtn.enabled {
+      cursor: pointer;
+      background-color: #2a5298;
+    }
+
+    #loginBtn.enabled:hover { background-color: #1e3c72; }
+
+    .contact {
+      max-width: 800px;
+      margin: 20px auto 40px;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 15px 20px;
+      border-radius: 12px;
+      text-align: center;
+      color: #333;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+      position: relative;
+      z-index: 1;
+    }
+
+    footer {
+      width: 100%;
+      text-align: center;
+      padding: 15px;
+      background: rgba(0,0,0,0.7);
+      color: #fff;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media(max-width: 600px){
+      header img { height: 50px; }
+      header h1 { font-size: 1.2em; }
+      h1.main-heading { font-size: 1.2em; padding: 15px 20px; }
+      .box, .contact { margin: 15px; padding: 15px; }
+    }
+
+    a { color: #2a5298; text-decoration: none; }
+    a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h2>Welcome to Hammarsdale Got Talent</h2>
-    <div class="rules">
-      <strong>Competition Rules:</strong>
-      <button id="toggleRules" class="toggle-btn">Show</button>
-      <div id="rulesContent" class="rules-content">
-        <p>1. Each participant must be a resident of Hammarsdale.</p>
-        <p>2. Performances must not exceed 5 minutes.</p>
-        <p>3. Respect fellow contestants and judges.</p>
-        <p>4. No offensive language or behavior allowed.</p>
-        <p>5. Judges’ decision is final.</p>
-      </div>
-    </div>
-    <div>
-      <input type="checkbox" id="agreeCheckbox"> I have read and agree to the rules
-    </div>
-    <button id="loginBtn" class="btn" disabled>Login</button>
+
+<header>
+  <img src="logo1.jpg" alt="Logo 1">
+  <h1>Hammarsdale Got Talent</h1>
+  <img src="logo2.jpg" alt="Logo 2">
+</header>
+
+<h1 class="main-heading">LIVE VOTING TRACKER</h1>
+
+<!-- Terms Summary -->
+<div class="box">
+  <h2>Terms & Conditions</h2>
+  <p>By accessing this portal, you agree to keep all information strictly confidential. Unauthorized access or misuse may result in legal action.</p>
+  <p>For full Terms & Conditions, <a href="terms.html" target="_blank">click here</a>.</p>
+</div>
+
+<!-- Competition Rules Summary -->
+<div class="box rules">
+  <h2>Competition Rules <button id="toggleRules">Show</button></h2>
+  <div class="rulesContent" id="rulesContent">
+    <ul>
+      <li>Participants must register prior to performance day.</li>
+      <li>All performances must be original or credited.</li>
+      <li>Judges evaluate skill, performance, and dress code.</li>
+      <li>Voting fee: R2.00 per vote. One vote per phone number per contestant.</li>
+      <li>Manipulation of votes may result in disqualification.</li>
+      <li>Organisers make final decisions on disputes.</li>
+    </ul>
   </div>
+</div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const checkbox = document.getElementById('agreeCheckbox');
-      const loginBtn = document.getElementById('loginBtn');
-      const toggleBtn = document.getElementById('toggleRules');
-      const rulesContent = document.getElementById('rulesContent');
+<!-- Agreement -->
+<div class="agreement">
+  <input type="checkbox" id="agreeCheckbox">
+  <label for="agreeCheckbox">I have read and agree to the Terms & Conditions and Competition Rules</label>
+</div>
 
-      // Enable/disable login button
-      checkbox.addEventListener('change', () => {
-        loginBtn.disabled = !checkbox.checked;
-        loginBtn.classList.toggle('enabled', checkbox.checked);
-      });
+<button id="loginBtn" disabled>Login</button>
 
-      // Login action
-      loginBtn.addEventListener('click', () => {
-        if (!loginBtn.disabled) {
-          window.location.href = 'login.html';
-        }
-      });
+<!-- Contact Details -->
+<div class="contact">
+  <h2>Contact Us</h2>
+  <p>Email: <a href="mailto:thembakheswa2006@outlook.com">thembakheswa2006@outlook.com</a></p>
+  <p>Phone: +27 67 022 6846</p>
+  <p>Website: <a href="https://htg-voting.netlify.app" target="_blank">htg-voting.netlify.app</a></p>
+</div>
 
-      // Toggle rules
-      toggleBtn.addEventListener('click', () => {
-        rulesContent.classList.toggle('show');
-        toggleBtn.innerText = rulesContent.classList.contains('show') ? 'Hide' : 'Show';
-      });
-    });
-  </script>
+<footer>
+  &copy; 2025 Umkhumbi Wamalokishi Movement (NPC) | Hammarsdale Got Talent
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const checkbox = document.getElementById('agreeCheckbox');
+  const loginBtn = document.getElementById('loginBtn');
+  const toggleBtn = document.getElementById('toggleRules');
+  const rulesContent = document.getElementById('rulesContent');
+
+  // Login button
+  checkbox.addEventListener('change', () => {
+    if (checkbox.checked) {
+      loginBtn.disabled = false;
+      loginBtn.classList.add('enabled');
+      loginBtn.onclick = () => { window.location.href = 'login.html'; };
+    } else {
+      loginBtn.disabled = true;
+      loginBtn.classList.remove('enabled');
+      loginBtn.onclick = null;
+    }
+  });
+
+  // Toggle rules
+  toggleBtn.addEventListener('click', () => {
+    rulesContent.classList.toggle('show');
+    toggleBtn.innerText = rulesContent.classList.contains('show') ? 'Hide' : 'Show';
+  });
+});
+</script>
+
 </body>
 </html>
