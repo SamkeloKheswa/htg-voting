@@ -117,7 +117,6 @@
       padding: 12px 25px;
       border: none;
       border-radius: 8px;
-      cursor: not-allowed;
       font-size: 1.1em;
       margin-bottom: 20px;
       transition: background 0.3s ease;
@@ -202,7 +201,7 @@
   <label for="agreeCheckbox">I have read and agree to the Terms & Conditions and Competition Rules</label>
 </div>
 
-<button id="loginBtn" disabled>Login</button>
+<button id="loginBtn" class="">Login</button>
 
 <!-- Contact Details -->
 <div class="contact">
@@ -223,16 +222,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const toggleBtn = document.getElementById('toggleRules');
   const rulesContent = document.getElementById('rulesContent');
 
-  // Login button
+  // Always assign the click handler
+  loginBtn.addEventListener('click', () => {
+    if (loginBtn.classList.contains('enabled')) {
+      window.location.href = 'login.html';
+    }
+  });
+
+  // Toggle button state based on checkbox
   checkbox.addEventListener('change', () => {
     if (checkbox.checked) {
       loginBtn.classList.add('enabled');
-      loginBtn.removeAttribute('disabled'); // ✅ Fix: remove disabled attribute
-      loginBtn.onclick = () => { window.location.href = 'login.html'; };
     } else {
       loginBtn.classList.remove('enabled');
-      loginBtn.setAttribute('disabled', 'true'); // ✅ Reapply disabled attribute
-      loginBtn.onclick = null;
     }
   });
 
@@ -243,7 +245,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 </script>
-
 
 </body>
 </html>
