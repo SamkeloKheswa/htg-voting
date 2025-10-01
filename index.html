@@ -226,12 +226,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // Login button
   checkbox.addEventListener('change', () => {
     if (checkbox.checked) {
-      loginBtn.disabled = false;
       loginBtn.classList.add('enabled');
+      loginBtn.removeAttribute('disabled'); // ✅ Fix: remove disabled attribute
       loginBtn.onclick = () => { window.location.href = 'login.html'; };
     } else {
-      loginBtn.disabled = true;
       loginBtn.classList.remove('enabled');
+      loginBtn.setAttribute('disabled', 'true'); // ✅ Reapply disabled attribute
       loginBtn.onclick = null;
     }
   });
@@ -243,6 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 </script>
+
 
 </body>
 </html>
