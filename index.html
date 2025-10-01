@@ -122,19 +122,19 @@
       z-index: 1;
     }
 
-    #loginBtn {
+    .login-link {
+      display: inline-block;
       background-color: #2a5298;
       color: white;
       padding: 12px 25px;
-      border: none;
       border-radius: 8px;
-      cursor: pointer;
       font-size: 1.1em;
       margin-bottom: 20px;
+      text-decoration: none;
       transition: background 0.3s ease;
     }
 
-    #loginBtn:hover {
+    .login-link:hover {
       background-color: #1e3c72;
     }
 
@@ -196,7 +196,8 @@
   <p>I have read and agree to the Terms & Conditions and Competition Rules</p>
 </div>
 
-<button id="loginBtn">Login</button>
+<!-- Login Link -->
+<a href="login.html" class="login-link">Click here to login</a>
 
 <!-- Contact Details -->
 <div class="contact">
@@ -212,14 +213,8 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  const loginBtn = document.getElementById('loginBtn');
   const toggleBtn = document.getElementById('toggleRules');
   const rulesContent = document.getElementById('rulesContent');
-
-  // Always active login button
-  loginBtn.addEventListener('click', () => {
-    window.location.href = 'login.html';
-  });
 
   // Toggle rules
   toggleBtn.addEventListener('click', () => {
