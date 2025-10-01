@@ -109,26 +109,6 @@
       z-index: 1;
     }
 
-    .agreement input[type="checkbox"] { transform: scale(1.2); margin-right: 10px; }
-
-    #loginBtn {
-      background-color: #1e3c72;
-      color: white;
-      padding: 12px 25px;
-      border: none;
-      border-radius: 8px;
-      font-size: 1.1em;
-      margin-bottom: 20px;
-      transition: background 0.3s ease;
-    }
-
-    #loginBtn.enabled {
-      cursor: pointer;
-      background-color: #2a5298;
-    }
-
-    #loginBtn.enabled:hover { background-color: #1e3c72; }
-
     .contact {
       max-width: 800px;
       margin: 20px auto 40px;
@@ -140,6 +120,22 @@
       box-shadow: 0 6px 15px rgba(0,0,0,0.2);
       position: relative;
       z-index: 1;
+    }
+
+    #loginBtn {
+      background-color: #2a5298;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.1em;
+      margin-bottom: 20px;
+      transition: background 0.3s ease;
+    }
+
+    #loginBtn:hover {
+      background-color: #1e3c72;
     }
 
     footer {
@@ -197,11 +193,10 @@
 
 <!-- Agreement -->
 <div class="agreement">
-  <input type="checkbox" id="agreeCheckbox">
-  <label for="agreeCheckbox">I have read and agree to the Terms & Conditions and Competition Rules</label>
+  <p>I have read and agree to the Terms & Conditions and Competition Rules</p>
 </div>
 
-<button id="loginBtn" class="">Login</button>
+<button id="loginBtn">Login</button>
 
 <!-- Contact Details -->
 <div class="contact">
@@ -217,25 +212,13 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  const checkbox = document.getElementById('agreeCheckbox');
   const loginBtn = document.getElementById('loginBtn');
   const toggleBtn = document.getElementById('toggleRules');
   const rulesContent = document.getElementById('rulesContent');
 
-  // Always assign the click handler
+  // Always active login button
   loginBtn.addEventListener('click', () => {
-    if (loginBtn.classList.contains('enabled')) {
-      window.location.href = 'login.html';
-    }
-  });
-
-  // Toggle button state based on checkbox
-  checkbox.addEventListener('change', () => {
-    if (checkbox.checked) {
-      loginBtn.classList.add('enabled');
-    } else {
-      loginBtn.classList.remove('enabled');
-    }
+    window.location.href = 'login.html';
   });
 
   // Toggle rules
