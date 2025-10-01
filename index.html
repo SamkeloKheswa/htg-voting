@@ -219,7 +219,7 @@
   <div class="box">
     <h2>Premium SMS Voting Terms</h2>
     <p><strong>Service Provider:</strong> Umkhumbi Wamalokishi Movement NPC</p>
-    <p><strong>How to Vote:</strong> Send SMS with keyword <strong>HGT</strong> to <strong>33282</strong></p>
+    <p><strong>How to Vote:</strong> Send SMS with keyword <strong>HGT (Unique Code)</strong> to <strong>33282</strong></p>
     <p><strong>Cost:</strong> R1.50 per SMS. Standard network/admin fees may apply. Free SMSs do not apply.</p>
     <p><strong>Voting Period:</strong> 06 October 2025 – 29 November 2025</p>
     <p><strong>Rules:</strong> Each SMS counts as one vote. Multiple votes allowed unless restricted. Winner is based on highest valid votes.</p>
@@ -242,3 +242,13 @@
   <p>Phone: +27 67 022 6846</p>
   <p>Website: <a href="https://htg-voting.netlify.app" target="_blank">htg-voting.netlify.app</a></p>
 </div>
+  
+<script>
+  const toggleBtn = document.getElementById('toggleRules');
+  const rules = document.getElementById('rulesContent');
+
+  toggleBtn.addEventListener('click', () => {
+    rules.classList.toggle('show');
+    toggleBtn.textContent = rules.classList.contains('show') ? 'Hide' : 'Show';
+  });
+</script>
