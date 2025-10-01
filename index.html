@@ -124,12 +124,14 @@
 
     /* ======================== Login Link ======================== */
     a.login-link {
-      color: #2a5298; /* brand color */
+      position: relative;
+      z-index: 2; /* make clickable above overlay */
+      color: #2a5298;
       text-decoration: underline;
       font-weight: normal;
-      padding: 0;
       background: none;
       border-radius: 0;
+      padding: 0;
     }
 
     a.login-link:hover {
@@ -197,7 +199,7 @@
 </div>
 
 <!-- Login Link -->
-<p style="text-align: center; margin: 20px 0;">
+<p style="text-align: center; margin: 20px 0; position: relative; z-index: 2;">
   <a href="login.html" class="login-link">Login to Voting System</a>
 </p>
 
