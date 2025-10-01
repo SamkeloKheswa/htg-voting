@@ -51,73 +51,28 @@ footer {
 }
 
 /* ======================== Login Card ======================== */
-.login-card {
-  max-width: 400px;
-  width: 90%;
-  padding: 40px 30px;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 20px;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-  text-align: center;
-  color: #333;
-  animation: fadeIn 0.8s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.login-card h2 {
-  margin-bottom: 25px;
-  color: #2575fc;
-  font-size: 28px;
-}
-
-.login-card input {
-  width: 85%;
-  padding: 15px;
-  margin: 12px 0;
-  border: 1px solid #ddd;
-  border-radius: 50px;
-  outline: none;
-  background: #f0f4ff;
-  font-size: 16px;
-  transition: all 0.3s ease;
-}
-
-.login-card input:focus {
-  border: 2px solid #6a11cb;
-  box-shadow: 0 0 8px rgba(106,17,203,0.3);
-}
-
-.login-card button {
-  width: 90%;
-  padding: 15px;
-  margin-top: 20px;
-  border: none;
-  border-radius: 50px;
+/* ======================== Login Link ======================== */
+.login-link {
+  display: inline-block;
+  color: #ffffff;
   background: linear-gradient(135deg, #6a11cb, #2575fc);
-  color: #fff;
+  padding: 15px 30px;
+  border-radius: 50px;
+  text-decoration: none;
   font-size: 18px;
   font-weight: bold;
-  cursor: pointer;
+  text-align: center;
   transition: all 0.3s ease;
   box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  cursor: pointer;
 }
 
-.login-card button:hover {
+.login-link:hover {
   transform: scale(1.05);
-  box-shadow: 0 12px 25px rgba(0,0,0,0.3);
   opacity: 0.95;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.3);
 }
 
-#error {
-  margin-top: 12px;
-  font-weight: bold;
-  color: #c0392b;
-  font-size: 14px;
-}
 
 /* ======================== Dashboard Styling ======================== */
 .dashboard {
